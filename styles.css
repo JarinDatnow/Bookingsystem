@@ -56,6 +56,18 @@ button,input,select{font:inherit;color:inherit}
 }
 .tally .flag{color:var(--late);font-weight:600}
 
+.dot{
+  width:9px;height:9px;padding:0;
+  border:0;border-radius:50%;
+  background:var(--rule);
+  cursor:pointer;
+  align-self:center;
+  transition:background .15s ease,transform .12s ease;
+}
+.dot:hover{background:var(--ink-2)}
+.dot.tapped{transform:scale(1.7)}
+.dot.woke{background:var(--out)}
+
 .datenav{display:flex;align-items:center;gap:6px}
 
 .datenav input[type=date]{

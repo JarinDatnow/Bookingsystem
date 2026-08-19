@@ -369,5 +369,47 @@
     });
   });
 
+  /* ---------------------------------------------------------- the button */
+
+  var taps = 0;
+
+  var lines = {
+    4:  'That does nothing.',
+    7:  'Still nothing.',
+    11: 'You have now pressed a button that does nothing 11 times.',
+    15: 'The first rule of the AV cupboard is you do not talk about the AV cupboard.',
+    18: 'The second rule of the AV cupboard is you DO NOT talk about the AV cupboard.',
+    23: 'Congratulations. You pressed a random button 23 times. Now get to class.',
+    30: 'Class started seven presses ago.',
+    40: 'Somewhere, a projector is unbooked.',
+    50: 'Fifty. This is the most anyone has ever cared about this button.',
+    64: 'You are the all-singing, all-dancing crap of the world.',
+    80: 'Right. It is a projector booking page. Go outside.',
+    99: 'Ninety-nine. One for every teacher on the list. Well done, honestly.'
+  };
+
+  var idle = [
+    'No.',
+    'It is still a dot.',
+    'Try the Board tab. It actually works.',
+    'Nothing here. Bit like the store cupboard.',
+    'You do have a class, right?'
+  ];
+
+  $('#dot').addEventListener('click', function () {
+    var d = this;
+    taps++;
+
+    d.classList.add('tapped');
+    setTimeout(function () { d.classList.remove('tapped'); }, 120);
+    if (taps >= 15) d.classList.add('woke');
+
+    if (lines[taps]) {
+      toast(lines[taps]);
+    } else if (taps > 99 && taps % 10 === 0) {
+      toast(idle[Math.floor(Math.random() * idle.length)]);
+    }
+  });
+
   boot();
 })();
