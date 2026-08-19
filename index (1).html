@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Equipment Desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-id">
+    <h1 id="school">Equipment Desk</h1>
+    <p class="tally" id="tally">Loading…</p>
+  </div>
+  <div class="datenav">
+    <button class="step" id="prevDay" aria-label="Previous day">&larr;</button>
+    <input type="date" id="date" aria-label="Date">
+    <button class="step" id="nextDay" aria-label="Next day">&rarr;</button>
+    <button class="step" id="reload" aria-label="Reload">&#8635;</button>
+  </div>
+</header>
+
+<nav class="tabs" role="tablist">
+  <button class="tab is-on" data-view="board" role="tab">Board</button>
+  <button class="tab" data-view="book" role="tab">Book something</button>
+  <button class="tab" data-view="desk" role="tab">At the desk</button>
+</nav>
+
+<main>
+
+  <!-- ------------------------------------------------ board -->
+  <section id="view-board" class="view">
+    <div class="board-wrap">
+      <div id="board" class="board"></div>
+    </div>
+    <ul class="key">
+      <li><span class="chip chip-booked"></span>Booked</li>
+      <li><span class="chip chip-out"></span>Signed out</li>
+      <li><span class="chip chip-back"></span>Returned</li>
+      <li><span class="chip chip-late"></span>Overdue</li>
+    </ul>
+  </section>
+
+  <!-- ------------------------------------------------ book -->
+  <section id="view-book" class="view" hidden>
+    <form id="bookForm" class="form" autocomplete="off">
+      <div class="field">
+        <label for="f-teacher">Your name</label>
+        <select id="f-teacher" required></select>
+      </div>
+
+      <div class="field">
+        <label for="f-item">What you need</label>
+        <select id="f-item" required></select>
+        <p class="hint" id="itemHint"></p>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="f-from">First period</label>
+          <select id="f-from" required></select>
+        </div>
+        <div class="field">
+          <label for="f-to">Last period</label>
+          <select id="f-to" required></select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="f-notes">Where it's going <span class="opt">optional</span></label>
+        <input type="text" id="f-notes" placeholder="Room 12 / Hall / Grade 9 assembly">
+      </div>
+
+      <button type="submit" class="primary" id="bookBtn">Book it</button>
+      <p class="hint" id="bookFor"></p>
+    </form>
+  </section>
+
+  <!-- ------------------------------------------------ desk -->
+  <section id="view-desk" class="view" hidden>
+    <div id="late" class="late" hidden></div>
+    <div id="deskList"></div>
+  </section>
+
+</main>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
